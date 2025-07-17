@@ -1,0 +1,11 @@
+[project]
+name = "re-kindle"
+version = "0.1.0"
+description = "Re-integrate highlights exported from Kindle back into your EPUBs."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.13.4",
+    "ebooklib>=0.19",
+    "tqdm>=4.67.1",
+]
