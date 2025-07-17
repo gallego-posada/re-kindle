@@ -39,7 +39,7 @@ If you do not specify a `--clippings_library_dir`, the script will use the defau
 The last two options will display an interactive command-line menu to select the desired EPUB file.
 
 ```
-💽 Available source EPUBs under `$USER_HOME/Calibre Library`:
+💽 Available source EPUBs under '$USER_HOME/Calibre Library':
 - [0] Dostoyevsky - Notes from Underground.epub
 - [1] Isherwood - A Single Man.epub
 - [2] Vargas Llosa - The Feast of the Goat.epub
@@ -57,7 +57,7 @@ Similar to the EPUB selection, you can choose the source clippings file from sev
 The last two options will display an interactive command-line menu to select the desired clippings file.
 
 ```
-💽 Available clippings in `assets/clippings` matching EPUB name:
+💽 Available clippings in 'assets/clippings' matching EPUB name:
 - [0] Dostoyevsky - Notes from Underground.txt
 - [1] Isherwood - A Single Man.html
 - [2] Vargas Llosa - The Feast of the Goat.txt
@@ -74,8 +74,8 @@ If you want to list only relevant clippings files based on the EPUB title, use t
 > python re_kindle.py [YOUR_EPUB_FLAGS_HERE] --smart_title_matching
 ```
 
-```bash
-💽 Available clippings in `assets/clippings` matching EPUB name:
+```
+💽 Available clippings in 'assets/clippings' matching EPUB name:
 - [0] Vargas Llosa - The Feast of the Goat.txt
 - [1] Vargas Llosa - The Feast of the Goat.html
 
@@ -90,7 +90,7 @@ The flag `--pre_fetch_clippings` allows you to preview the number of highlights 
 > python re_kindle.py [YOUR_EPUB_FLAGS_HERE] --smart_title_matching --pre_fetch_clippings
 ```
 
-```bash
+```
 💽 Available clippings in 'assets/clippings' matching EPUB name:
 - [0] Vargas Llosa - The Feast of the Goat.html [52 highlights/notes]
 - [1] Vargas Llosa - The Feast of the Goat.txt [49 highlights/notes]
