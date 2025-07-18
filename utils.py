@@ -2,8 +2,19 @@ import re
 
 from bs4 import BeautifulSoup
 
-HIGHLIGHT_HEAD = """<mark style="background-color: yellow;">"""
-HIGHLIGHT_TAIL = "</mark>"
+
+def is_valid_hex_color(color):
+    """
+    Returns True if the string is a valid hex color code.
+    Supports:
+      - 3 or 4 hex digits: #RGB or #RGBA
+      - 6 or 8 hex digits: #RRGGBB or #RRGGBBAA
+    """
+    if not isinstance(color, str):
+        return False
+
+    pattern = re.compile(r"^#(?:[0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?)$")
+    return bool(pattern.fullmatch(color))
 
 
 def write_to_log(log_path, log):
@@ -116,7 +127,10 @@ def split_raw_html_on_pars(html):
     return result
 
 
-def create_highlighted_tags(match):
+def create_highlighted_tags(match, highlight_color):
+    HIGHLIGHT_HEAD = f"""<mark style="background-color: {highlight_color};">"""
+    HIGHLIGHT_TAIL = "</mark>"
+
     prefix, suffix = match.all_tag_str.split(match.pre_highlight)
     html_tags = split_raw_html_on_pars(match.pre_highlight)
 

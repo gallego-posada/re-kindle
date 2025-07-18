@@ -18,3 +18,13 @@ ASSETS_DIR = Path.cwd() / "assets"
 CLIPPINGS_DIR = ASSETS_DIR / "clippings"
 PROCESSED_DIR = ASSETS_DIR / "processed"
 LOGS_DIR = Path.cwd() / "logs"
+
+KNOWN_COLORS = {
+    "yellow": "#fff7aeea",
+    "green": "#b6e4c7eb",
+    "blue": "#aecbfac5",
+    "red": "#f28b82ca",
+    "purple": "#d7aefbd0",
+    "gray": "#dbd6d6c8",
+    "dark-gray": "#777777C9",
+}

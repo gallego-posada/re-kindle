@@ -97,6 +97,14 @@ The flag `--pre_fetch_clippings` allows you to preview the number of highlights 
 
 Select your clippings file (default is 0): _
 ```
+### 💅 Styling your highlights
+
+You can customize the appearance of your highlights in the EPUB by specifying a highlight
+color using the `--highlight_color` flag. By default, the highlight color is set to 
+yellow (`#fff7aeea`). The available colors are listed in `config.py` under `KNOWN_COLORS`.
+You can also specify a custom hex color code (e.g., `--highlight_color "#e6ad28f4"`). 
+Visit [color-hex.com](https://www.color-hex.com/) for help choosing a hex color code. 
+
 
 ## Known Issues/TODOs
 

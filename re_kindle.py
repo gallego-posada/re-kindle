@@ -24,7 +24,7 @@ from tqdm import tqdm
 
 import utils
 from clip_utils import parse_clippings
-from config import CLIPPINGS_DIR, LOGS_DIR, PROCESSED_DIR
+from config import CLIPPINGS_DIR, KNOWN_COLORS, LOGS_DIR, PROCESSED_DIR
 
 
 class Match:
@@ -215,6 +215,7 @@ def process_book(
     clippings_library_dir=None,
     do_clippings_title_matching=True,
     pre_fetch_clippings=True,
+    highlight_color=None,
 ):
     if os.path.exists(ebook_path):
         filename = os.path.basename(ebook_path)
@@ -245,7 +246,7 @@ def process_book(
         raw_item = spine[match.spine_ix]
         soup = BeautifulSoup(raw_item.get_content(), "xml")
         pars = soup.find_all("p")
-        new_tags = utils.create_highlighted_tags(match)
+        new_tags = utils.create_highlighted_tags(match, highlight_color=highlight_color)
 
         for ix, orig_ix in enumerate(match.matched_tag_indices):
             pars[orig_ix].replace_with(new_tags[ix])
@@ -286,6 +287,8 @@ def argparse_setup():
         help="Pre-fetch number elements in a clippings file for more intuitive navigation.",
     )
 
+    parser.add_argument("--highlight_color", type=str, help="Color to use for highlights (default: gray).")
+
     return parser
 
 
@@ -311,10 +314,22 @@ if __name__ == "__main__":
     if clips_library_dir is not None:
         clips_library_dir = Path(clips_library_dir)
 
+    if args.highlight_color is None:
+        highlight_color = KNOWN_COLORS.get("yellow")
+    elif args.highlight_color in KNOWN_COLORS:
+        highlight_color = KNOWN_COLORS[args.highlight_color]
+    elif utils.is_valid_hex_color(args.highlight_color):
+        highlight_color = args.highlight_color
+    else:
+        raise ValueError(
+            f"Invalid highlight color: {args.highlight_color}. Must be one of {list(KNOWN_COLORS.keys())} or a valid hex color code."
+        )
+
     process_book(
         ebook_path=ebook_path,
         clips_path=clips_path,
         clippings_library_dir=clips_library_dir,
         do_clippings_title_matching=args.smart_title_matching,
         pre_fetch_clippings=args.pre_fetch_clippings,
+        highlight_color=highlight_color,
     )
